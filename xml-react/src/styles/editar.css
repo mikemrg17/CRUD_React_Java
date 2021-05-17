@@ -1,0 +1,17 @@
+.formEditar{
+    display: flex;
+    flex-direction: column;
+}
+
+.targetClass{
+    display: inline-block;
+}
+
+.dragClass{
+    display: inline-block;
+}
+
+.secondary{
+    margin-left: 50%;
+    margin: 10px auto;
+}
