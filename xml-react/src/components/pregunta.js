@@ -36,7 +36,7 @@ const Pregunta = ({ id, pregunta }) => {
                 <Button
                     variant="warning"
                     className="M-6">
-                    <Link to={`/Crud_React/formulario?id=${id}`} className="CustomLink" >
+                    <Link to={`/Crud_React/edit?id=${id}`} className="CustomLink" >
                         Editar pregunta
                     </Link>
                 </Button>

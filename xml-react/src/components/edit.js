@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Form, Input } from "react-bootstrap";
 import axios from "axios";
 
-class Info extends React.Component {
+class Edit extends React.Component {
 
     state = {
         id: "",
@@ -30,8 +30,10 @@ class Info extends React.Component {
         return (
             <Container className="MarginContainer">
                 <h3>Informacion de la pregunta</h3>
-                <p>Pregunta: {pregunta}</p>
-                <p>Respuesta: {respuesta}</p>
+                <Form>
+                    Pregunta:<Input type="text" value={pregunta}></Input>
+                    Respuesta:<Input type="text" value={respuesta}></Input>
+                </Form>
                 <p>Drag Options</p>
                 <div className="AlignCenter">
                     {
@@ -66,4 +68,4 @@ class Info extends React.Component {
     }
 }
 
-export default Info;
+export default Edit;

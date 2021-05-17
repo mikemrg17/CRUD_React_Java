@@ -4,9 +4,25 @@
         <servlet-name>Preguntas</servlet-name>
         <servlet-class>Api.Preguntas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditarPregunta</servlet-name>
+        <servlet-class>Api.EditarPregunta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PreguntasSol</servlet-name>
+        <servlet-class>Api.PreguntasSol</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Preguntas</servlet-name>
         <url-pattern>/Preguntas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarPregunta</servlet-name>
+        <url-pattern>/EditarPregunta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PreguntasSol</servlet-name>
+        <url-pattern>/PreguntasSol</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

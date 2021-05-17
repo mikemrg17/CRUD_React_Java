@@ -22,18 +22,21 @@ public class Preguntas extends HttpServlet {
         response.setContentType("application/json");
         response.addHeader("Access-Control-Allow-Origin", "*");
             StringBuilder json = new StringBuilder();
-            json.append("[");            
+            json.append("[");    
     try
     {
-    Class.forName("com.mysql.jdbc.Driver");
-    Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","root", "1234");
-    Statement s = db.createStatement();        
-    ResultSet rs=s.executeQuery("select * from tablajson;");
-    while(rs.next())
-    {
-    String cadena=rs.getString("columnajson");
-    json.append(cadena);
-    }
+        int contador=0;
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","miguel", "1234");
+        Statement s = db.createStatement();
+        ResultSet rs=s.executeQuery("select * from tablajson;");
+        while(rs.next())
+        {
+        if(contador!=0)
+        json.append(","); 
+        String cadena=rs.getString("columnajson");
+        json.append(cadena);
+        contador++;}
     }
     catch(Exception e)
     {
