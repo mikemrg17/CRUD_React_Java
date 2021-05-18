@@ -12,12 +12,10 @@ class Insert extends React.Component {
     }
 
     render() {
-       
-        const { pregunta, respuesta, drags, targets } = this.state;
         return(
-        <Container className="MarginContainer">
+            <div>
             <h3>Agregar nueva pregunta</h3>
-            <Form method="post">
+            <Form method="post" action="http://localhost:8080/Crud_React/InsertarPregunta">
                 <input type="text" name="nombre" id="nombre" placeholder="Ingrese el nombre de la pregunta">Nombre de la pregunta:</input>
                 <input type="text" name="pregunta" id="pregunta" placeholder="Ingrese la pregunta">Pregunta:</input>
                 <input type="text" name="respuesta" id="respuesta" placeholder="Ingrese la respuesta">Respuesta:</input>
@@ -34,8 +32,8 @@ class Insert extends React.Component {
             <Button variant="secondary" onClick={() => window.location.href = "/Crud_React/"}>
                     Regresar
             </Button>
-        </Container>
-        )
+            </div>
+        );
     }
 }
 
