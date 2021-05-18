@@ -36,7 +36,7 @@ class Home extends React.Component {
                         : null
                 }
                 <Button variant="info" style={{ margin: "12px" }}>
-                    <Link to="/Crud_React/insert" className="CustomLink">Añadir nueva pregunta</Link>
+                    <Link to={`/Crud_React/insert`} className="CustomLink">Añadir nueva pregunta</Link>
                 </Button>
                 <Table striped bordered >
                     <thead>

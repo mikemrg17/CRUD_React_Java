@@ -24,9 +24,11 @@ public class EditarPregunta extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String id = request.getParameter("id");
+        
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","root", "1234");
+            Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","miguel", "1234");
             Statement s = db.createStatement();
             
         } catch (Exception ex) {
