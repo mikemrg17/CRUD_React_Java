@@ -27,7 +27,7 @@ public class InsertarPregunta extends HttpServlet {
         response.addHeader("Access-Control-Allow-Origin", "*");
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","root", "1234");
+            Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","miguel", "1234");
             Statement s = db.createStatement();
             //ResultSet rs=s.executeQuery("INSERT INTO tablajson(columnjson) VALUES()");
         }

@@ -1,7 +1,7 @@
 import React from "react";
 import {
     Switch,
-    Route,
+    Route
 } from "react-router-dom";
 import Home from "./components/home";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,7 +26,7 @@ const App = () => {
                 <Route exact path="/Crud_React/insert">
                     <Insert />
                 </Route>
-                <Route path="*" render={() => <h1>Recurso no encontrado</h1>} />
+                <Route path="*" render={() => <h1>Recurso no encontrado</h1>}/>
             </Switch>
         </div>
     );

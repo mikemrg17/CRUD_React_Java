@@ -25,14 +25,46 @@ class Edit extends React.Component {
         }
     }
 
+    onQuestionChange(value){
+        this.setState({
+            pregunta: value
+        });
+    }
+
+    onAnswerChange(value){
+        this.setState({
+            respuesta: value
+        });
+    }
+
+    editQuestion(){
+        objeto = {
+            id: this.state.id,
+            pregunta: this.state.pregunta,
+            drags: this.state.drags,
+            target: this.state.targets
+        }
+
+        axios.post("http://localhost:8080/Crud_React/PreguntasSol?objeto="+objeto).then(response => {
+            const question = response.data[0];
+            this.setState({ ...question }).catch(error => {
+                console.info(error);
+                alert("Ha ocurrido un error");
+            });
+        
+        }
+    }
+
+
+
     render() {
         const { pregunta, respuesta, drags, targets } = this.state;
         return (
             <Container className="MarginContainer">
                 <h3>Informacion de la pregunta</h3>
-                <form className="formEditar" method="POST" action="submit">
-                    Pregunta: <input type="text" value={pregunta} onChange={this.handleChange}/>
-                    Respuestas: <input type="text" value={respuesta} onChange={this.handleChange}/>
+                <form className="formEditar" method="POST" onSubmit={editQuestion()}>
+                    Pregunta: <input type="text" value={this.state.pregunta} onChange={e => this.onQuestionChange(e.target.value)} />
+                    Respuestas: <input type="text" value={this.state.respuesta} onChange={e => this.onAnswerChange(e.target.value)} />
 
                     <div className="dragClass">
                         <p>Drag Options</p>
@@ -91,7 +123,7 @@ class Edit extends React.Component {
                                             }}/>
                         </span>
                     </div>                
-                    <input type="Button" className="secondary" onClick={()=>console.log("Boton presionado")} value="Editar"/>
+                    <input type="Submit" className="secondary" value="Editar"/>
                 </form>
             </Container>
         )
