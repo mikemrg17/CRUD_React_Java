@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles/styles.css"
 import Info from "./components/info";
 import Edit from "./components/edit";
+import Insert from "./components/insert";
 
 const App = () => {
     return (
@@ -21,6 +22,9 @@ const App = () => {
                 </Route>
                 <Route exact path="/Crud_React/edit">
                     <Edit />
+                </Route>
+                <Route exact path="/Crud_React/insert">
+                    <Insert />
                 </Route>
                 <Route path="*" render={() => <h1>Recurso no encontrado</h1>} />
             </Switch>

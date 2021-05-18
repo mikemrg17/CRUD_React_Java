@@ -26,7 +26,7 @@ public class EditarPregunta extends HttpServlet {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","miguel", "1234");
+            Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","root", "1234");
             Statement s = db.createStatement();
             
         } catch (Exception ex) {
