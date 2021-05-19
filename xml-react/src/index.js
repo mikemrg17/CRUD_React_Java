@@ -26,7 +26,7 @@ const App = () => {
                 <Route exact path="/Crud_React/insert">
                     <Insert />
                 </Route>
-                <Route path="*" render={() => <h1>Recurso no encontrado</h1>}/>
+                <Route path="*" render={() => window.location.href = "/Crud_React/"}/>
             </Switch>
         </div>
     );

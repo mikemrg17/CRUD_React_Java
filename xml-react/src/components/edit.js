@@ -30,7 +30,7 @@ class Edit extends React.Component {
         value ? console.log("Aceptado") : console.log("No aceptado");
         this.setState({
             pregunta: value
-        });
+        },console.log(this.state.pregunta));
         
     }
 
@@ -38,35 +38,35 @@ class Edit extends React.Component {
         value ? console.log("Aceptado") : console.log("No aceptado");
         this.setState({
             respuesta: value
+        },console.log(this.state.respuesta));
+        
+    }
+    
+    editQuestion = e =>{
+        e.preventDefault();
+        alert("Se editarán los cambios");
+        console.log("Objeto a pasar");
+        console.log(this.state);
+        axios.post("http://localhost:8080/Crud_React/EditarPregunta",this.state)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+                console.info(error);
+                console.log("Ha ocurrido un error al mandar los datos");
         });
     }
 
-    editQuestion(){
-        let objetoToEdit = {
-            idToEdit: this.state.id,
-            preguntaToEdit: this.state.pregunta,
-            dragsToEdit: this.state.drags,
-            targetToEdit: this.state.targets
-        }
-
-        axios.post("http://localhost:8080/Crud_React/PreguntasSol?objeto="+objetoToEdit).then(() => {
-            console.log("Aceptado el enviar datos")})
-            .catch(error => {
-                console.info(error);
-                alert("Ha ocurrido un error al mandar los datos");
-            });
-        }
-
-
 
     render() {
-        const { pregunta, respuesta, drags, targets } = this.state;
+        const { id, pregunta, respuesta, drags, targets } = this.state;
         return (
             <Container className="MarginContainer">
                 <h3>Informacion de la pregunta</h3>
-                <form className="formEditar" method="POST" onSubmit={this.editQuestion()}>
-                    Pregunta: <input type="text" value={this.state.pregunta} onChange={e => this.onQuestionChange(e.target.value)} />
-                    Respuestas: <input type="text" value={this.state.respuesta} onChange={e => this.onAnswerChange(e.target.value)} />
+
+                <form className="formEditar" onSubmit={this.editQuestion}>
+                    Pregunta: <input type="text" name="pregunta" value={this.state.pregunta} onChange={e=>this.onQuestionChange(e.target.value)} />
+                    Respuestas: <input type="text" name="respuesta" value={this.state.respuesta} onChange={e=>this.onAnswerChange(e.target.value)} />
 
                     <div className="dragClass">
                         <p>Drag Options</p>
@@ -127,6 +127,9 @@ class Edit extends React.Component {
                     </div>                
                     <input type="Submit" className="secondary" value="Editar"/>
                 </form>
+                <Button variant="secondary" onClick={() => window.location.href = "/Crud_React/"}>
+                    Regresar
+                </Button>
             </Container>
         )
     }
