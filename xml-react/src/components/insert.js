@@ -15,7 +15,7 @@ class Insert extends React.Component {
         return(
             <div className="container mt-5">
             <h3>Agregar nueva pregunta</h3>
-            <form method="post" action="http://localhost:8080/Crud_React/InsertarPregunta">
+            <form method="post">
                 <input type="text" name="nombre" id="nombre" placeholder="Ingrese el nombre de la pregunta" className="form-control mb-2"/>
                 <input type="text" name="pregunta" id="pregunta" placeholder="Ingrese la pregunta" className="form-control mb-2"/>
                 <input type="text" name="respuesta" id="respuesta" placeholder="Ingrese la respuesta" className="form-control mb-2"/>

@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Container} from "react-bootstrap";
 import axios from "axios";
 import '../styles/editar.css';
+import { Redirect } from 'react-router-dom';
 
 class Edit extends React.Component {
     state = {
@@ -41,7 +42,7 @@ class Edit extends React.Component {
         },console.log(this.state.respuesta));
         
     }
-    
+
     editQuestion = e =>{
         e.preventDefault();
         alert("Se editarán los cambios");
@@ -50,6 +51,7 @@ class Edit extends React.Component {
         axios.post("http://localhost:8080/Crud_React/EditarPregunta",this.state)
         .then(response => {
             console.log(response);
+            return <Redirect to="/Crud_React/"/>
         })
         .catch(error => {
                 console.info(error);
@@ -57,6 +59,7 @@ class Edit extends React.Component {
         });
     }
 
+    
 
     render() {
         const { id, pregunta, respuesta, drags, targets } = this.state;
@@ -124,8 +127,8 @@ class Edit extends React.Component {
                                                 console.log("Agregado:" + objetoTarget);
                                             }}/>
                         </span>
-                    </div>                
-                    <input type="Submit" className="secondary" value="Editar"/>
+                    </div>   
+                    <input type="Submit" className="secondary" value="Editar"/>                                 
                 </form>
                 <Button variant="secondary" onClick={() => window.location.href = "/Crud_React/"}>
                     Regresar

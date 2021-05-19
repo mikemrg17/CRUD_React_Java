@@ -20,7 +20,7 @@ public class InsertarPregunta extends HttpServlet {
     private PrintWriter out;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
         
         String nombre =request.getParameter("nombre");
         String pregunta =request.getParameter("pregunta");
