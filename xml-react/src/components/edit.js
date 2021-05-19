@@ -18,41 +18,43 @@ class Edit extends React.Component {
             axios.get("http://localhost:8080/Crud_React/PreguntasSol?id="+qId).then(response => {
                 const question = response.data[0];
                 this.setState({ ...question });
+                console.log("datos obtenidos");
             }).catch(error => {
                 console.info(error);
-                alert("Ha ocurrido un error");
+                alert("Ha ocurrido un error al obtener los datos");
             });
         }
     }
 
     onQuestionChange(value){
+        value ? console.log("Aceptado") : console.log("No aceptado");
         this.setState({
             pregunta: value
         });
+        
     }
 
     onAnswerChange(value){
+        value ? console.log("Aceptado") : console.log("No aceptado");
         this.setState({
             respuesta: value
         });
     }
 
     editQuestion(){
-        objeto = {
-            id: this.state.id,
-            pregunta: this.state.pregunta,
-            drags: this.state.drags,
-            target: this.state.targets
+        let objetoToEdit = {
+            idToEdit: this.state.id,
+            preguntaToEdit: this.state.pregunta,
+            dragsToEdit: this.state.drags,
+            targetToEdit: this.state.targets
         }
 
-        axios.post("http://localhost:8080/Crud_React/PreguntasSol?objeto="+objeto).then(response => {
-            const question = response.data[0];
-            this.setState({ ...question }).catch(error => {
+        axios.post("http://localhost:8080/Crud_React/PreguntasSol?objeto="+objetoToEdit).then(() => {
+            console.log("Aceptado el enviar datos")})
+            .catch(error => {
                 console.info(error);
-                alert("Ha ocurrido un error");
+                alert("Ha ocurrido un error al mandar los datos");
             });
-        
-        }
     }
 
 
@@ -62,7 +64,7 @@ class Edit extends React.Component {
         return (
             <Container className="MarginContainer">
                 <h3>Informacion de la pregunta</h3>
-                <form className="formEditar" method="POST" onSubmit={editQuestion()}>
+                <form className="formEditar" method="POST" onSubmit={this.editQuestion()}>
                     Pregunta: <input type="text" value={this.state.pregunta} onChange={e => this.onQuestionChange(e.target.value)} />
                     Respuestas: <input type="text" value={this.state.respuesta} onChange={e => this.onAnswerChange(e.target.value)} />
 

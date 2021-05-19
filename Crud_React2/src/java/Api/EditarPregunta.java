@@ -24,13 +24,12 @@ public class EditarPregunta extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String id = request.getParameter("id");
+        String id = request.getParameter("objeto");
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","miguel", "1234");
             Statement s = db.createStatement();
-            
         } catch (Exception ex) {
             System.out.println("No se pudo editar el registro");
             ex.printStackTrace();
