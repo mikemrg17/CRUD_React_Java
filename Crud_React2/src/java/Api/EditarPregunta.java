@@ -23,9 +23,7 @@ public class EditarPregunta extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        BufferedReader reader = request.getReader();
-        reader.read();
-
+        
         
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
