@@ -55,7 +55,7 @@ class Edit extends React.Component {
                 console.info(error);
                 alert("Ha ocurrido un error al mandar los datos");
             });
-    }
+        }
 
 
 

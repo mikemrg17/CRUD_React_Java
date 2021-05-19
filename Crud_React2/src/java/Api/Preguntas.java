@@ -27,7 +27,7 @@ public class Preguntas extends HttpServlet {
     {
         int contador=0;
         Class.forName("com.mysql.jdbc.Driver");
-        Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","miguel", "1234");
+        Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","root", "1234");
         Statement s = db.createStatement();
         ResultSet rs=s.executeQuery("select * from tablajson;");
         while(rs.next())
