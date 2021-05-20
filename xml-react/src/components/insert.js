@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Container, Form} from "react-bootstrap";
-import axios from 'axios';
+import axios from "axios";
 
 
 class Insert extends React.Component {
@@ -14,15 +14,14 @@ class Insert extends React.Component {
     }
 
     componentDidMount() {
-        //Obtén el id del último registro de la base de datos y sumale uno
         axios.get("http://localhost:8080/Crud_React/InsertarPregunta").then(response => {
-            //this.setState({ data: response.data });
             console.log({data: response.data});
             console.log(typeof response.data);
             let idGetter = (response.data+1).toString();
+            console.log(typeof idGetter);
             this.setState({id:idGetter});
         }).catch(error => {
-            console.info(error);
+            console.log(error);
         });
         //this.state.id = ID_DEL_ULTIMO_REGISTRO_+_1
         console.log("Se asignó nuevo id");
@@ -45,11 +44,11 @@ class Insert extends React.Component {
     }
 
     AddQuestion = e =>{
-        //e.preventDefault();
+        e.preventDefault();
         alert("Se insertará la pregunta");
         console.log("Objeto a pasar");
         console.log(this.state);
-        axios.post("http://localhost:8080/Crud_React/Insertar",this.state)
+        axios.post("http://localhost:8080/Crud_React/AgregarPregunta",this.state)
         .then(response => {
             console.log(response);
         })

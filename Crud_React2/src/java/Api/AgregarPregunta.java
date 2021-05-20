@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,9 +22,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author miguel
  */
-
-public class Insertar extends HttpServlet {
-    private PrintWriter out;
+ //@WebServlet(name="CrearPregunta") 
+public class AgregarPregunta extends HttpServlet {
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,17 +32,12 @@ public class Insertar extends HttpServlet {
         String payloadRequest = getBody(request);
         System.out.println(payloadRequest);
         
-        out = response.getWriter();
-        response.setContentType("application/json");
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        
         int row;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","miguel", "1234");
-            PreparedStatement statement = db.prepareStatement("INSERT INTO tablajson(columnajson) VALUES(?)");
-            statement.setString(1, payloadRequest);
-            row = statement.executeUpdate();
+            Statement statement = db.createStatement();
+            statement.executeUpdate("INSERT INTO tablajson(columnajson) VALUES('"+payloadRequest+"')");
 
             
         } catch (Exception ex) {

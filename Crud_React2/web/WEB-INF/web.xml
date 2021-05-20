@@ -17,16 +17,16 @@
         <servlet-class>Api.Eliminar</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>InsertarPregunta</servlet-name>
-        <servlet-class>Api.InsertarPregunta</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>InsertarPregunta2</servlet-name>
         <servlet-class>Api.InsertarPregunta2</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Insertar</servlet-name>
-        <servlet-class>Api.Insertar</servlet-class>
+        <servlet-name>AgregarPregunta</servlet-name>
+        <servlet-class>Api.AgregarPregunta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertarPregunta</servlet-name>
+        <servlet-class>Api.InsertarPregunta</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Preguntas</servlet-name>
@@ -45,16 +45,16 @@
         <url-pattern>/Eliminar</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InsertarPregunta</servlet-name>
-        <url-pattern>/InsertarPregunta</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>InsertarPregunta2</servlet-name>
         <url-pattern>/InsertarPregunta2</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Insertar</servlet-name>
-        <url-pattern>/Insertar</url-pattern>
+        <servlet-name>AgregarPregunta</servlet-name>
+        <url-pattern>/AgregarPregunta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertarPregunta</servlet-name>
+        <url-pattern>/InsertarPregunta</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
