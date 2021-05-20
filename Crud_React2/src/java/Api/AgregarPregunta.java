@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,9 +21,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author miguel
  */
- //@WebServlet(name="CrearPregunta") 
+
 public class AgregarPregunta extends HttpServlet {
-   
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,9 +35,10 @@ public class AgregarPregunta extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","miguel", "1234");
-            Statement statement = db.createStatement();
-            statement.executeUpdate("INSERT INTO tablajson(columnajson) VALUES('"+payloadRequest+"')");
-
+            PreparedStatement statement = db.prepareStatement("INSERT INTO tablajson(columnajson) VALUES(?)");
+            statement.setString(1, payloadRequest);
+            row = statement.executeUpdate();
+            System.out.println("Se insertó a la base de datos");
             
         } catch (Exception ex) {
             System.out.println("No se pudo editar el registro");

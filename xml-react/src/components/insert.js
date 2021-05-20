@@ -63,7 +63,7 @@ class Insert extends React.Component {
             <div className="container mt-5">
                 <h3>Agregar nueva pregunta</h3>
                 
-                <form className="formInsertar" onSubmit={this.addQuestion}>
+                <form className="formInsertar" onSubmit={this.AddQuestion}>
                     <input type="text" value={this.state.id} readOnly className="form-control mb-2"/>
                     <input type="text" name="pregunta" id="pregunta" placeholder="Ingrese la pregunta" className="form-control mb-2" onChange={e=>this.onQuestionChange(e.target.value)}/>
                     <input type="text" name="respuesta" id="respuesta" placeholder="Ingrese la respuesta" className="form-control mb-2" onChange={e=>this.onAnswerChange(e.target.value)}/>
@@ -76,7 +76,7 @@ class Insert extends React.Component {
                                                 this.state.drags.push(objetoDrag);
                                                 console.log("Agregado:" + objetoDrag);
                                             }}/>
-                    <input type="button" value="Agregar Drag" onClick={()=>{
+                    <input type="button" value="Agregar Target" onClick={()=>{
                                                 let objetoTarget = {
                                                     "valor": "",
                                                     "imagen": "https://via.placeholder.com/150"
