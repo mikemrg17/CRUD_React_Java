@@ -30,7 +30,7 @@ public class Eliminar extends HttpServlet {
         System.out.println("El id es:"+id);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","miguel", "1234");
+            Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","root", "1234");
             PreparedStatement statement = db.prepareStatement("DELETE FROM tablajson WHERE id = ?");
             statement.setString(1, id);
             row = statement.executeUpdate();

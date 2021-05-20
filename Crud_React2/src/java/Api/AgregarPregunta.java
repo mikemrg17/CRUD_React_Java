@@ -34,7 +34,7 @@ public class AgregarPregunta extends HttpServlet {
         int row;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","miguel", "1234");
+            Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","root", "1234");
             PreparedStatement statement = db.prepareStatement("INSERT INTO tablajson(columnajson) VALUES(?)");
             statement.setString(1, payloadRequest);
             row = statement.executeUpdate();

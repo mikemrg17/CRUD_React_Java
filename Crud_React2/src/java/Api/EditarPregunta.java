@@ -45,7 +45,7 @@ public class EditarPregunta extends HttpServlet {
         int row;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","miguel", "1234");
+            Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","root", "1234");
             PreparedStatement statement = db.prepareStatement("UPDATE tablajson SET columnajson=? WHERE id=?");
             statement.setString(1, payloadRequest);
             statement.setString(2,  part2);
