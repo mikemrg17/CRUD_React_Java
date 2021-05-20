@@ -20,61 +20,38 @@ import java.sql.Statement;
  * @author axel_
  */
 public class InsertarPregunta extends HttpServlet {
+    private PrintWriter out;
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String payloadRequest = getBody(request);
-        System.out.println(payloadRequest);
-        int row;
-        try {
+        out = response.getWriter();
+        response.setContentType("application/json");
+        response.addHeader("Access-Control-Allow-Origin", "*");
+            StringBuilder json = new StringBuilder();  
+        try
+        {
             Class.forName("com.mysql.jdbc.Driver");
             Connection db = DriverManager.getConnection("jdbc:mysql://localhost/crudjson","miguel", "1234");
-            PreparedStatement statement = db.prepareStatement("INSERT INTO tablajson(columnajson) VALUES(?)");
-            statement.setString(1, payloadRequest);
-            row = statement.executeUpdate();
-            
-        } catch (Exception ex) {
-            System.out.println("No se pudo editar el registro");
-            ex.printStackTrace();
+            Statement s = db.createStatement();
+            ResultSet rs=s.executeQuery("SELECT MAX(id) AS id from tablajson;");
+            while(rs.next())          
+            {
+                String cadena=rs.getString("id");
+                json.append(cadena);
+            }
+            System.out.println(json);
+        }
+        catch(Exception e)
+        {
+        e.printStackTrace();
+        }
+        out.write(json.toString());
         }
         
-        
-    }
-    
-    public static String getBody(HttpServletRequest request) throws IOException {
-
-    String body = null;
-    StringBuilder stringBuilder = new StringBuilder();
-    BufferedReader bufferedReader = null;
-
-    try {
-        InputStream inputStream = request.getInputStream();
-        if (inputStream != null) {
-            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            char[] charBuffer = new char[128];
-            int bytesRead = -1;
-            while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
-                stringBuilder.append(charBuffer, 0, bytesRead);
-            }
-        } else {
-            stringBuilder.append("");
-        }
-    } catch (IOException ex) {
-        throw ex;
-    } finally {
-        if (bufferedReader != null) {
-            try {
-                bufferedReader.close();
-            } catch (IOException ex) {
-                throw ex;
-            }
-        }
     }
 
-    body = stringBuilder.toString();
-    return body;
-}
     
-}
+    
+    

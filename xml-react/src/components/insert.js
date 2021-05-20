@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Container, Form} from "react-bootstrap";
+import axios from 'axios';
 
 
 class Insert extends React.Component {
@@ -14,6 +15,15 @@ class Insert extends React.Component {
 
     componentDidMount() {
         //Obtén el id del último registro de la base de datos y sumale uno
+        axios.get("http://localhost:8080/Crud_React/InsertarPregunta").then(response => {
+            //this.setState({ data: response.data });
+            console.log({data: response.data});
+            console.log(typeof response.data);
+            let idGetter = (response.data+1).toString();
+            this.setState({id:idGetter});
+        }).catch(error => {
+            console.info(error);
+        });
         //this.state.id = ID_DEL_ULTIMO_REGISTRO_+_1
         console.log("Se asignó nuevo id");
     }
@@ -39,7 +49,7 @@ class Insert extends React.Component {
         alert("Se insertará la pregunta");
         console.log("Objeto a pasar");
         console.log(this.state);
-        axios.post("http://localhost:8080/Crud_React/InsertarPregunta",this.state)
+        axios.post("http://localhost:8080/Crud_React/Insertar",this.state)
         .then(response => {
             console.log(response);
         })
@@ -55,6 +65,7 @@ class Insert extends React.Component {
                 <h3>Agregar nueva pregunta</h3>
                 
                 <form className="formInsertar" onSubmit={this.addQuestion}>
+                    <input type="text" value={this.state.id} readOnly className="form-control mb-2"/>
                     <input type="text" name="pregunta" id="pregunta" placeholder="Ingrese la pregunta" className="form-control mb-2" onChange={e=>this.onQuestionChange(e.target.value)}/>
                     <input type="text" name="respuesta" id="respuesta" placeholder="Ingrese la respuesta" className="form-control mb-2" onChange={e=>this.onAnswerChange(e.target.value)}/>
                     <input type="button" value="Agregar Drag" onClick={()=>{

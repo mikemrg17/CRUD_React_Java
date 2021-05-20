@@ -8,15 +8,10 @@ const Pregunta = ({ id, pregunta }) => {
     const handleClickEliminar = (event) => {
         //Eliminar
         axios.post(`http://localhost:8080/Crud_React/Eliminar?id=${id}`).then(response => {
-            console.info(response.data);
-            if (response.data.message) {
-                alert(response.data.message);
-            } else {
-                alert(response.data.error);
-            }
+            console.info(response);
         }).catch(error => {
             console.info(error);
-            alert(response.data.message);
+            alert(response);
         }).finally(() => {
             window.location.href = "/Crud_React/";
         });
@@ -25,7 +20,8 @@ const Pregunta = ({ id, pregunta }) => {
     return (
         <tr>
             <td>{pregunta}</td>
-            <td className="AlignCenter">
+
+                <td className="AlignCenter">
                 <Button
                     variant="success"
                     className="M-6">
