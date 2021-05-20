@@ -51,7 +51,6 @@ class Edit extends React.Component {
         axios.post("http://localhost:8080/Crud_React/EditarPregunta",this.state)
         .then(response => {
             console.log(response);
-            return <Redirect to="/Crud_React/"/>
         })
         .catch(error => {
                 console.info(error);

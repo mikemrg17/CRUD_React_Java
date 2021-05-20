@@ -5,35 +5,83 @@ import { Button, Container, Form} from "react-bootstrap";
 class Insert extends React.Component {
 
     state = {
+        id: "",
         pregunta: "",
         respuesta: "",
         drags: [],
         targets: []
     }
 
+    componentDidMount() {
+        //Obtén el id del último registro de la base de datos y sumale uno
+        //this.state.id = ID_DEL_ULTIMO_REGISTRO_+_1
+        console.log("Se asignó nuevo id");
+    }
+
+    onQuestionChange(value){
+        value ? console.log("Aceptado") : console.log("No aceptado");
+        this.setState({
+            pregunta: value
+        },console.log(this.state.pregunta));
+        
+    }
+
+    onAnswerChange(value){
+        value ? console.log("Aceptado") : console.log("No aceptado");
+        this.setState({
+            respuesta: value
+        },console.log(this.state.respuesta));
+        
+    }
+
+    AddQuestion = e =>{
+        //e.preventDefault();
+        alert("Se insertará la pregunta");
+        console.log("Objeto a pasar");
+        console.log(this.state);
+        axios.post("http://localhost:8080/Crud_React/InsertarPregunta",this.state)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+                console.info(error);
+                console.log("Ha ocurrido un error al insertar la pregunta");
+        });
+    }
+
     render() {
         return(
             <div className="container mt-5">
-            <h3>Agregar nueva pregunta</h3>
-            <form method="post">
-                <input type="text" name="nombre" id="nombre" placeholder="Ingrese el nombre de la pregunta" className="form-control mb-2"/>
-                <input type="text" name="pregunta" id="pregunta" placeholder="Ingrese la pregunta" className="form-control mb-2"/>
-                <input type="text" name="respuesta" id="respuesta" placeholder="Ingrese la respuesta" className="form-control mb-2"/>
-                <input type="text" name="drag1" id="drag1" placeholder="Drag option 1" className="form-control mb-2"/>
-                <input type="text" name="drag2" id="drag2" placeholder="Drag option 2" className="form-control mb-2"/>
-                <input type="text" name="drag3" id="drag3" placeholder="Drag option 3" className="form-control mb-2"/>
-                <input type="text" name="drag4" id="drag4" placeholder="Drag option 4" className="form-control mb-2"/>
-                <input type="text" name="tar1" id="tar1" placeholder="Target option 1" className="form-control mb-2"/>
-                <input type="text" name="tar2" id="tar2" placeholder="Target option 2" className="form-control mb-2"/>
-                <input type="text" name="tar3" id="tar3" placeholder="Target option 3" className="form-control mb-2"/>
-                <input type="text" name="tar4" id="tar4" placeholder="Target option 4" className="form-control mb-2"/>
-                <div className="d-grid gap-2">
-                    <button type="submit">Agregar</button>
-                </div>
-            </form>
-            <Button variant="secondary" onClick={() => window.location.href = "/Crud_React/"}>
-                    Regresar
-            </Button>
+                <h3>Agregar nueva pregunta</h3>
+                
+                <form className="formInsertar" onSubmit={this.addQuestion}>
+                    <input type="text" name="pregunta" id="pregunta" placeholder="Ingrese la pregunta" className="form-control mb-2" onChange={e=>this.onQuestionChange(e.target.value)}/>
+                    <input type="text" name="respuesta" id="respuesta" placeholder="Ingrese la respuesta" className="form-control mb-2" onChange={e=>this.onAnswerChange(e.target.value)}/>
+                    <input type="button" value="Agregar Drag" onClick={()=>{
+                                                let objetoDrag = {
+                                                    "valor": "",
+                                                    "imagen": "https://via.placeholder.com/150"
+                                                }
+                                                objetoDrag.valor = prompt("Inserta nombre de algún famoso");
+                                                this.state.drags.push(objetoDrag);
+                                                console.log("Agregado:" + objetoDrag);
+                                            }}/>
+                    <input type="button" value="Agregar Drag" onClick={()=>{
+                                                let objetoTarget = {
+                                                    "valor": "",
+                                                    "imagen": "https://via.placeholder.com/150"
+                                                }
+                                                objetoTarget.valor = prompt("Inserta nombre de algún país");
+                                                this.state.targets.push(objetoTarget);
+                                                console.log("Agregado:" + objetoTarget);
+                                            }}/>
+                    <div className="d-grid gap-2">
+                        <input type="Submit" className="secondary" value="Insertar"/>                                 
+                    </div>
+                </form>
+                <Button variant="secondary" onClick={() => window.location.href = "/Crud_React/"}>
+                        Regresar
+                </Button>
             </div>
         );
     }
